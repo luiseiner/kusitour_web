@@ -15,8 +15,14 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-# Allow all host headers
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+# Configuración de hosts permitidos
+ALLOWED_HOSTS = []
+
+# Añadir el nombre de host externo proporcionado por Render, si existe
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -126,3 +132,4 @@ USE_TZ = True
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
