@@ -1,88 +1,95 @@
 {% extends "base2.html" %}
 
 {% block body %}
-<div class="row">
-    <div class="col-md-3">
-        <h4>Agregar Agencia</h4>
-        <form method="POST" action="{% url 'agregar_agencia' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-        
-            <div class="mb-3">
-                <label for="id_nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="id_nombre" name="nombre" required value="{{ form.nombre.value|default_if_none:'' }}">
-                {% if form.nombre.errors %}
-                    <div class="alert alert-danger">{{ form.nombre.errors.as_text }}</div>
-                {% endif %}
+<!-- Modal para agregar agencia -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Agregar Nueva Agencia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        
-            <div class="mb-3">
-                <label for="id_provincia" class="form-label">Provincia</label>
-                <input type="text" class="form-control" id="id_provincia" name="provincia" required value="{{ form.provincia.value|default_if_none:'' }}">
-                {% if form.provincia.errors %}
-                    <div class="alert alert-danger">{{ form.provincia.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <div class="mb-3">
-                <label for="id_email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="id_email" name="email" required value="{{ form.email.value|default_if_none:'' }}">
-                {% if form.email.errors %}
-                    <div class="alert alert-danger">{{ form.email.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <div class="mb-3">
-                <label for="id_llamada" class="form-label">Llamada</label>
-                <input type="text" class="form-control" id="id_llamada" name="llamada" required value="{{ form.llamada.value|default_if_none:'' }}">
-                {% if form.llamada.errors %}
-                    <div class="alert alert-danger">{{ form.llamada.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <div class="mb-3">
-                <label for="id_pagina_web" class="form-label">Página Web</label>
-                <input type="url" class="form-control" id="id_pagina_web" name="pagina_web" required value="{{ form.pagina_web.value|default_if_none:'' }}">
-                {% if form.pagina_web.errors %}
-                    <div class="alert alert-danger">{{ form.pagina_web.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <div class="mb-3">
-                <label for="id_redes" class="form-label">Redes</label>
-                <input type="text" class="form-control" id="id_redes" name="redes" required value="{{ form.redes.value|default_if_none:'' }}">
-                {% if form.redes.errors %}
-                    <div class="alert alert-danger">{{ form.redes.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <div class="mb-3">
-                <label for="id_imagen_url" class="form-label">Imagen</label>
-                <input type="file" class="form-control" id="id_imagen_url" name="imagen_url" required>
-                {% if form.imagen_url.errors %}
-                    <div class="alert alert-danger">{{ form.imagen_url.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <div class="mb-3">
-                <label for="id_es_publicidad" class="form-label">Es Publicidad</label>
-                <input type="checkbox" class="form-check-input" id="id_es_publicidad" name="es_publicidad" {% if form.es_publicidad.value %}checked{% endif %}>
-            </div>
-        
-            <div class="mb-3">
-                <label for="id_valoracion" class="form-label">Valoración</label>
-                <input type="number" step="0.01" class="form-control" id="id_valoracion" name="valoracion" required value="{{ form.valoracion.value|default_if_none:'' }}">
-                {% if form.valoracion.errors %}
-                    <div class="alert alert-danger">{{ form.valoracion.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <button type="submit" class="btn btn-primary">Agregar</button>
-        </form>
-        
-        
+            <form method="POST" action="{% url 'agregar_agencia' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+            
+                <div class="mb-3">
+                    <label for="id_nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="id_nombre" name="nombre" required value="{{ form.nombre.value|default_if_none:'' }}">
+                    {% if form.nombre.errors %}
+                        <div class="alert alert-danger">{{ form.nombre.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="id_provincia" class="form-label">Provincia</label>
+                    <input type="text" class="form-control" id="id_provincia" name="provincia" required value="{{ form.provincia.value|default_if_none:'' }}">
+                    {% if form.provincia.errors %}
+                        <div class="alert alert-danger">{{ form.provincia.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="id_email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="id_email" name="email" required value="{{ form.email.value|default_if_none:'' }}">
+                    {% if form.email.errors %}
+                        <div class="alert alert-danger">{{ form.email.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="id_llamada" class="form-label">Llamada</label>
+                    <input type="text" class="form-control" id="id_llamada" name="llamada" required value="{{ form.llamada.value|default_if_none:'' }}">
+                    {% if form.llamada.errors %}
+                        <div class="alert alert-danger">{{ form.llamada.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="id_pagina_web" class="form-label">Página Web</label>
+                    <input type="url" class="form-control" id="id_pagina_web" name="pagina_web" required value="{{ form.pagina_web.value|default_if_none:'' }}">
+                    {% if form.pagina_web.errors %}
+                        <div class="alert alert-danger">{{ form.pagina_web.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="id_redes" class="form-label">Redes</label>
+                    <input type="text" class="form-control" id="id_redes" name="redes" required value="{{ form.redes.value|default_if_none:'' }}">
+                    {% if form.redes.errors %}
+                        <div class="alert alert-danger">{{ form.redes.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="id_imagen_url" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" id="id_imagen_url" name="imagen_url" required>
+                    {% if form.imagen_url.errors %}
+                        <div class="alert alert-danger">{{ form.imagen_url.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="id_es_publicidad" class="form-label">Es Publicidad</label>
+                    <input type="checkbox" class="form-check-input" id="id_es_publicidad" name="es_publicidad" {% if form.es_publicidad.value %}checked{% endif %}>
+                </div>
+            
+                <div class="mb-3">
+                    <label for="id_valoracion" class="form-label">Valoración</label>
+                    <input type="number" step="0.01" class="form-control" id="id_valoracion" name="valoracion" required value="{{ form.valoracion.value|default_if_none:'' }}">
+                    {% if form.valoracion.errors %}
+                        <div class="alert alert-danger">{{ form.valoracion.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
+        </div>
     </div>
+</div>
+
     <div class="col-md-8">
         <h4>Lista de Agencias</h4>
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addModal">Registrar</button>
         <table class="table table-striped">
             <thead>
                 <tr>

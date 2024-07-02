@@ -1,87 +1,94 @@
 {% extends "base2.html" %}
 {% load static %}
 {% block body %}
-<div class="row">
-    <div class="col-md-4">
-        <h4>Agregar Lugar Turístico</h4>
-        <form method="POST" action="{% url 'agregar_lugar_turistico' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-        
-            <div class="mb-3">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required value="{{ form.nombre.value|default_if_none:'' }}">
-                {% if form.nombre.errors %}
-                    <div class="alert alert-danger">{{ form.nombre.errors.as_text }}</div>
-                {% endif %}
+ <!-- Modal para agregar agencia -->
+ <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">Agregar Nuevo luegar turistico</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        
-            <div class="mb-3">
-                <label for="provincia" class="form-label">Provincia</label>
-                <input type="text" class="form-control" id="provincia" name="provincia" required value="{{ form.provincia.value|default_if_none:'' }}">
-                {% if form.provincia.errors %}
-                    <div class="alert alert-danger">{{ form.provincia.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <div class="mb-3">
-                <label for="descripcion" class="form-label">Descripción</label>
-                <input type="text" class="form-control" id="descripcion" name="descripcion" required value="{{ form.descripcion.value|default_if_none:'' }}">
-                {% if form.descripcion.errors %}
-                    <div class="alert alert-danger">{{ form.descripcion.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <div class="mb-3">
-                <label for="horario" class="form-label">Horario</label>
-                <input type="text" class="form-control" id="horario" name="horario" required value="{{ form.horario.value|default_if_none:'' }}">
-                {% if form.horario.errors %}
-                    <div class="alert alert-danger">{{ form.horario.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <div class="mb-3">
-                <label for="fecha_fundacion" class="form-label">Fecha de Fundación</label>
-                <input type="text" class="form-control" id="fecha_fundacion" name="fecha_fundacion" required value="{{ form.fecha_fundacion.value|default_if_none:'' }}">
-                {% if form.fecha_fundacion.errors %}
-                    <div class="alert alert-danger">{{ form.fecha_fundacion.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <div class="mb-3">
-                <label for="ubicacion" class="form-label">Ubicación URL</label>
-                <input type="text" class="form-control" id="ubicacion" name="ubicacion" required value="{{ form.ubicacion.value|default_if_none:'' }}">
-                {% if form.ubicacion.errors %}
-                    <div class="alert alert-danger">{{ form.ubicacion.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <div class="mb-3">
-                <label for="imagen_url" class="form-label">Imagen</label>
-                <input type="file" class="form-control" id="imagen_url" name="imagen_url" accept="image/*" required>
-                {% if form.imagen_url.errors %}
-                    <div class="alert alert-danger">{{ form.imagen_url.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <div class="mb-3">
-                <label for="valoracion" class="form-label">Valoración</label>
-                <input type="number" step="0.01" class="form-control" id="valoracion" name="valoracion" required value="{{ form.valoracion.value|default_if_none:'' }}">
-                {% if form.valoracion.errors %}
-                    <div class="alert alert-danger">{{ form.valoracion.errors.as_text }}</div>
-                {% endif %}
-            </div>
-        
-            <div class="mb-3">
-                <label for="es_publicidad" class="form-label">Es Publicidad</label>
-                <input type="checkbox" class="form-check-input" id="es_publicidad" name="es_publicidad" {% if form.es_publicidad.value %}checked{% endif %}>
-            </div>
-        
-            <button type="submit" class="btn btn-primary">Agregar</button>
-        </form>
-        
+            <form method="POST" action="{% url 'agregar_lugar_turistico' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+            
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required value="{{ form.nombre.value|default_if_none:'' }}">
+                    {% if form.nombre.errors %}
+                        <div class="alert alert-danger">{{ form.nombre.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="provincia" class="form-label">Provincia</label>
+                    <input type="text" class="form-control" id="provincia" name="provincia" required value="{{ form.provincia.value|default_if_none:'' }}">
+                    {% if form.provincia.errors %}
+                        <div class="alert alert-danger">{{ form.provincia.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="descripcion" name="descripcion" required value="{{ form.descripcion.value|default_if_none:'' }}">
+                    {% if form.descripcion.errors %}
+                        <div class="alert alert-danger">{{ form.descripcion.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="horario" class="form-label">Horario</label>
+                    <input type="text" class="form-control" id="horario" name="horario" required value="{{ form.horario.value|default_if_none:'' }}">
+                    {% if form.horario.errors %}
+                        <div class="alert alert-danger">{{ form.horario.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="fecha_fundacion" class="form-label">Fecha de Fundación</label>
+                    <input type="text" class="form-control" id="fecha_fundacion" name="fecha_fundacion" required value="{{ form.fecha_fundacion.value|default_if_none:'' }}">
+                    {% if form.fecha_fundacion.errors %}
+                        <div class="alert alert-danger">{{ form.fecha_fundacion.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="ubicacion" class="form-label">Ubicación URL</label>
+                    <input type="text" class="form-control" id="ubicacion" name="ubicacion" required value="{{ form.ubicacion.value|default_if_none:'' }}">
+                    {% if form.ubicacion.errors %}
+                        <div class="alert alert-danger">{{ form.ubicacion.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="imagen_url" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" id="imagen_url" name="imagen_url" accept="image/*" required>
+                    {% if form.imagen_url.errors %}
+                        <div class="alert alert-danger">{{ form.imagen_url.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="valoracion" class="form-label">Valoración</label>
+                    <input type="number" step="0.01" class="form-control" id="valoracion" name="valoracion" required value="{{ form.valoracion.value|default_if_none:'' }}">
+                    {% if form.valoracion.errors %}
+                        <div class="alert alert-danger">{{ form.valoracion.errors.as_text }}</div>
+                    {% endif %}
+                </div>
+            
+                <div class="mb-3">
+                    <label for="es_publicidad" class="form-label">Es Publicidad</label>
+                    <input type="checkbox" class="form-check-input" id="es_publicidad" name="es_publicidad" {% if form.es_publicidad.value %}checked{% endif %}>
+                </div>
+            
+                <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
+        </div>
     </div>
+</div>
     <div class="col-md-8">
         <h4>Lista de Lugares Turísticos</h4>
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addModal">Registrar</button><button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addModal">Registrar</button>
         <table class="table table-striped">
             <thead>
                 <tr>
