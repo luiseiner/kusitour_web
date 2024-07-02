@@ -1,0 +1,36 @@
+{% extends "base2.html" %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2>Lista de Comentarios</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Correo</th>
+                <th>Comentario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comentario in comentarios %}
+            <tr>
+                <td>{{ comentario.id }}</td>
+                <td>{{ comentario.correo }}</td>
+                <td>{{ comentario.comentario }}</td>
+                <td>
+                    <form method="POST" action="{% url 'eliminar_comentario' comentario.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No hay comentarios disponibles</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

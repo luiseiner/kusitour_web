@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #AE2002; /* Color de fondo rojo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"],
+        .login-form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .login-form input[type="submit"] {
+            background-color: #AE2002;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-form">
+        <img src="{% static 'img/Imagenlogo.jpg' %}" alt="Logo" width="260" >
+        <h2 style="text-align: center;">Iniciar Sesión</h2>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" placeholder="Usuario" id="username" name="username" required><br>
+            <input type="password" placeholder="Contraseña" id="password" name="password" required><br>
+            <input type="submit" value="Ingresar">
+            {% if error %}
+            <div class="alert alert-danger mt-2">{{ error }}</div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,270 @@
+{% extends './base.html' %}
+{% block title %}KusiTour{% endblock %}
+{% block body %}
+{% load static %}
+<style>
+  .download-button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #000000;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+  }
+
+  .download-button:hover {
+      background-color: #0056b3;
+  }
+</style>
+<div data-bs-target="#navbar" data-bs-spy="scroll" tabindex="0">
+    <section class="hero-section overflow-hidden position-relative z-0 mb-4 mb-lg-0" id="home">
+      <div style="background-image: url('http://127.0.0.1:8000/static/assets/img/illustrations/background.jpg'); min-height: 58rem;">
+        <div class="container">
+            <div class="row gy-4 gy-md-8 pt-9 pt-lg-0">
+                <div class="col-lg-6 text-center text-lg-start">
+                  <br><br><br><br><br><br><br>
+                    <h1 class="fs-2 fs-lg-1 text-white fw-bold mb-2 mb-lg-x1 lh-base mt-3 mt-lg-0">Esto es KusiTour, tu Compañero de Viaje Inteligente</h1>
+                    <p class="fs-8 text-white mb-3 mb-lg-4 lh-lg">Conoce todo los lugares culturales de la region de Ayacucho sin perderte ninguna información...</p>
+                    <p class="mb-x1 fs-10 button-text text-uppercase fw-bold lh-base text-300">Descarga la aplicación:</p>
+                    <a href="{% static '/assets/img/files/kusitour.apk' %}" download="archivo.pdf" class="download-button">Descargar APK</a>
+                </div>
+                <div class="col-lg-6 position-lg-relative">
+                    <div class="position-lg-absolute z-1 text-center">
+                      <br><br><br><br><br>
+                        <img class="img-fluid chat-image" src="{% static 'img/Celu_kusito.png' %}" alt="" />
+                        <div class="position-absolute dots d-none d-md-block">
+                            <img class="img-fluid w-50 w-lg-75" src="http://127.0.0.1:8000/static/assets/img/illustrations/Dots.webp" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="position-absolute bottom-0 start-0 end-0 z-1"><img class="wave mb-md-n2" src="assets/img/illustrations/Wave.svg" alt="" />
+        <div class="bg-white py-2 py-md-5"></div>
+      </div>
+    </section>
+    <br>
+    <br>
+    <section class="container mb-8 mb-lg-13" id="about">
+      <div class="row align-items-center">
+        <div class="col-12 col-lg-6 col-xl-7"><img class="img-fluid" src="http://127.0.0.1:8000/static/assets/img/favicons/Imagenicon.jpg" alt="" /></div>
+        <div class="col-12 col-lg-6 col-xl-5">
+          <div class="row justify-content-center justify-content-lg-start">
+            <div class="col-sm-10 col-md-8 col-lg-12">
+              <h2 class="fs-4 fs-lg-3 fw-bold mb-2 text-center text-lg-start">¿Quienes somos?:</h2>
+              <p class="fs-8 mb-4 mb-lg-5 lh-lg text-center text-lg-start fw-normal">"                
+                Somos un equipo apasionado por la tecnología, la cultura y el turismo, comprometido con la creación de soluciones innovadoras que transformen la forma en que las personas viajan y experimentan nuevos destinos. Con KusiTour, aspiramos a redefinir la experiencia de viaje, brindando a los viajeros una herramienta poderosa para explorar y conectar con el mundo que los rodea de manera única y significativa."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section style="background-color: #750000;" id="team">
+      <div class="row align-items-center">
+        <div class="col-12 col-lg-6 col-xl-7"><img class="img-fluid" src="http://127.0.0.1:8000/static/assets/img/nosotros.jpg" alt="" /></div>
+        <div class="col-12 col-lg-6 col-xl-5">
+          <div class="row justify-content-center justify-content-lg-start">
+            <div class="col-sm-10 col-md-8 col-lg-12">
+              <h1 class="fs-4 fs-lg-3 fw-bold" style="color: #fff;" >Equipo:</h1>
+              <br>
+              <br>
+              <br>
+              <br>
+            </div>
+            <div class="col-12">
+              <div class="mb-x1 mb-lg-3">
+                <h5 class="fs-8 fw-bold lh-lg mb-1" style="color: #fff;">Luis Einer Islachin Pillaca </h5>
+                <p class="mb-0 lh-xl" style="color: #999999;">Diseño y desarrollo de software</p>
+              </div>
+              <div>
+                <h5 class="fs-8 fw-bold lh-lg mb-1" style="color: #fff;">Fernando Jose Sanchez Berru</h5>
+                <p class="lh-xl mb-0" style="color: #999999">Diseño y desarrollo de software</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section class="container mb-8 mb-lg-11" id="use">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+          <h3 class="fs-4 fs-lg-3 fw-bold text-center mb-2 mb-lg-x1"> ¿Cómo empezar <span class="text-nowrap">a usar?</span></h3>
+          <p class="fs-8 mb-7 mb-lg-8 text-center lh-lg">Sigue los pasos para usar KusiTour.</p>
+        </div>
+        <div class="col-12">
+          <div class="row g-sm-2 g-lg-3 align-items-center timeline">
+            <div class="col-12 col-lg-4 d-flex flex-row flex-lg-column justify-content-center gap-2 gap-sm-x1 gap-md-4 gap-lg-0">
+              <div class="timeline-step-1 w-25 w-lg-100 mb-4 mb-lg-5 mb-xl-6">
+                <div class="timeline-item d-flex justify-content-center">
+                  <div class="timeline-icon bg-primary rounded-circle d-flex justify-content-center align-items-center"><span class="fs-6 fs-lg-5 fs-xl-4 text-white"> 1</span></div>
+                </div>
+              </div>
+              <div class="py-1 py-lg-0 px-lg-5 w-75 w-sm-50 w-lg-100 timeline-content">
+                <h6 class="fs-8 fw-bold text-lg-center lh-lg mb-2">Instala la App</h6>
+                <p class="text-lg-center lh-xl mb-0">Instala la aplicación con un solo click.</p>
+              </div>
+            </div>
+            <div class="col-12 col-lg-4 d-flex flex-row flex-lg-column justify-content-center gap-2 gap-sm-x1 gap-md-4 gap-lg-0">
+              <div class="timeline-step-2 w-25 w-lg-100 mb-4 mb-lg-5 mb-xl-6">
+                <div class="timeline-item d-flex justify-content-center">
+                  <div class="timeline-icon bg-success rounded-circle d-flex justify-content-center align-items-center"><span class="fs-6 fs-lg-5 fs-xl-4 text-white"> 2</span></div>
+                </div>
+              </div>
+              <div class="py-1 py-lg-0 px-lg-5 w-75 w-sm-50 w-lg-100 timeline-content">
+                <h6 class="fs-8 fw-bold text-lg-center lh-lg mb-2">Registrate</h6>
+                <p class="text-lg-center lh-xl mb-0">Ingresa tus datos <span class="text-nowrap">en los casilleros correctos. </span></p>
+              </div>
+            </div>
+            <div class="col-12 col-lg-4 d-flex flex-row flex-lg-column justify-content-center gap-2 gap-sm-x1 gap-md-4 gap-lg-0">
+              <div class="timeline-step-3 position-relative z-1 overflow-hidden w-25 w-lg-100 mb-4 mb-lg-5 mb-xl-6">
+                <div class="timeline-item d-flex justify-content-center">
+                  <div class="timeline-icon bg-info rounded-circle d-flex justify-content-center align-items-center"><span class="fs-6 fs-lg-5 fs-xl-4 text-white"> 3</span></div>
+                </div>
+              </div>
+              <div class="py-1 py-lg-0 px-lg-5 w-75 w-sm-50 w-lg-100 timeline-content">
+                <h6 class="fs-8 fw-bold text-lg-center lh-lg mb-2">Empiza a usar</h6>
+                <p class="text-lg-center lh-xl mb-0">Disfruta de todo lo que te ofrece<span class="text-nowrap">KusiTour!</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+    <section style="background-color: #750000;" id="questions">
+      <div class="container" style="background-color: #750000;">
+        <div class="row py-8 py-md-10 py-lg-11">
+          <div class="col-lg-6">
+            <div class="row justify-content-center justify-content-lg-start">
+              <div class="col-md-8 col-lg-12 col-xl-11">
+                <h2 class="text-white fs-4 fs-lg-3 lh-sm mb-2 text-center text-lg-start fw-bold">Las preguntas mas frecuentes.</h2>
+                <p class="fs-8 text-white text-opacity-65 mb-4 mb-md-6 mb-lg-7 lh-lg mb-6 mb-lg-7 text-center text-lg-start"> Estas son las preguntas mas recurrentes de nuestros usuarios.</p>
+              </div>
+              <div class="col-lg-10">
+                <div class="d-flex gap-2 gap-lg-x1 mb-4 mb-lg-5">
+                  <div>
+                    <div class="check-icon bg-success mb-1 rounded-circle d-flex align-items-center justify-content-center"> <span class="uil uil-check text-white"></span></div>
+                  </div>
+                  <div>
+                    <h5 class="fs-8 fw-bold lh-lg mb-1 text-white">La aplicacion es gratis </h5>
+                    <p class="lh-xl text-white text-opacity-70 mb-0">Garantizamos tenerte informado durante tu viaje..</p>
+                  </div>
+                </div>
+                <div class="d-flex gap-2 gap-lg-x1 mb-4 mb-lg-5">
+                  <div>
+                    <div class="check-icon bg-success mb-1 rounded-circle d-flex align-items-center justify-content-center"> <span class="uil uil-check text-white"></span></div>
+                  </div>
+                  <div>
+                    <h5 class="fs-8 fw-bold lh-lg mb-1 text-white">Reconocimiento de lugares</h5>
+                    <p class="lh-xl text-white text-opacity-70 mb-0">Con esta funcion solo tendras que escanear el lugar y te daremos la informacion.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="accordion mt-lg-4 ps-3 pe-x1 bg-white" id="accordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading1"><button class="accordion-button fs-8 lh-lg fw-bold pt-x1 pb-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expand="true" aria-controls="collapse1" data-accordion-button="data-accordion-button">Tengo que pagar para usar?</button></h2>
+                <div class="accordion-collapse collapse show" id="collapse1" data-bs-parent="#accordion">
+                  <div class="accordion-body lh-xl pt-0 pb-x1">No la aplicacion es completamente gratis!</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading2"><button class="accordion-button fs-8 lh-lg fw-bold pt-x1 pb-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expand="false" aria-controls="collapse2" data-accordion-button="data-accordion-button">Tengo que estar conectado a internet para usar?</button></h2>
+                <div class="accordion-collapse collapse" id="collapse2" data-bs-parent="#accordion">
+                  <div class="accordion-body lh-xl pt-0 pb-x1">Si necesicitas estar conectado a internet, para darte la informacion correcta!</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading3"><button class="accordion-button fs-8 lh-lg fw-bold pt-x1 pb-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expand="false" aria-controls="collapse3" data-accordion-button="data-accordion-button">Debo estar en lugar para que la camara reconosca la imagen?</button></h2>
+                <div class="accordion-collapse collapse" id="collapse3" data-bs-parent="#accordion">
+                  <div class="accordion-body lh-xl pt-0 pb-x1">No necesitas estar en lugar la aplicacion tiene la capacidad de reconocer imagenes !</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading4"><button class="accordion-button fs-8 lh-lg fw-bold pt-x1 pb-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expand="false" aria-controls="collapse4" data-accordion-button="data-accordion-button">Como se que la informacion es correcta?</button></h2>
+                <div class="accordion-collapse collapse" id="collapse4" data-bs-parent="#accordion">
+                  <div class="accordion-body lh-xl pt-0 pb-x1">La información lo ontenemos de Chatgpt que es una IA con información corroborada.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading5"><button class="accordion-button fs-8 lh-lg fw-bold pt-x1 pb-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expand="false" aria-controls="collapse5" data-accordion-button="data-accordion-button">La camara guarda alguna informacion cuando la uso?</button></h2>
+                <div class="accordion-collapse collapse" id="collapse5" data-bs-parent="#accordion">
+                  <div class="accordion-body lh-xl pt-0 pb-x1">No al usar la camara nos ayuda a reconocer el patrimonio, mas no guarda la imagen mostrada.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section class="container mb-8 mb-lg-13" id="comments">
+        <div class="row align-items-center">
+            <h1 class="fs-4 fs-lg-3 fw-bold" style="color: rgb(102, 0, 0); text-align: center;">¿Tienes alguna consulta?</h1>
+            <h4 style="color: rgb(0, 0, 0); text-align: center;">Pregúntanos algunas dudas que tengas sobre nuestra app, o algunas sugerencias para mejorar.</h4>
+            <br><br>
+            <form id="comentarioForm" method="POST" action="{% url 'agregar_comentario' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <h4 style="color: rgb(0, 0, 0); text-align: left;">Correo</h4>
+                    <input type="email" class="form-control" id="correo" name="correo" placeholder="name@example.com" required>
+                </div>
+                <div class="mb-3">
+                    <h4 style="color: rgb(0, 0, 0); text-align: left;">Comentario</h4>
+                    <textarea class="form-control" id="comentario" name="comentario" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary form-control btn-lg" style="background-color: #750000;">Guardar</button>
+                </div>
+                <div id="popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid black;">
+                    <h2>¡Gracias por tu opinión!</h2>
+                </div>
+            </form>
+            <script>
+                $(document).ready(function() {
+                    $('#comentarioForm').submit(function(event) {
+                        event.preventDefault();
+                        var formData = new FormData(this);
+                        $.ajax({
+                            type: 'POST',
+                            url: $(this).attr('action'),
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function(response) {
+                                if (response.success) {
+                                    $('#comentarioForm')[0].reset();
+                                    $('#popup').fadeIn().delay(3000).fadeOut();
+                                } else {
+                                    alert('Error: ' + JSON.stringify(response.errors));
+                                }
+                            },
+                            error: function(response) {
+                                alert('Ocurrió un error. Por favor, inténtelo de nuevo.');
+                            }
+                        });
+                    });
+                });
+            </script>
+        </div>
+    </section>
+  </div><button style="background-color: #750000;" class="btn scroll-to-top text-white rounded-circle d-flex justify-content-center align-items-center bg-primary"><span class="uil uil-angle-up"></span></button>
+{% endblock %}

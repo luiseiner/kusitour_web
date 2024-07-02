@@ -1,0 +1,227 @@
+{% extends "base2.html" %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-3">
+        <h4>Agregar Agencia</h4>
+        <form method="POST" action="{% url 'agregar_agencia' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+        
+            <div class="mb-3">
+                <label for="id_nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="id_nombre" name="nombre" required value="{{ form.nombre.value|default_if_none:'' }}">
+                {% if form.nombre.errors %}
+                    <div class="alert alert-danger">{{ form.nombre.errors.as_text }}</div>
+                {% endif %}
+            </div>
+        
+            <div class="mb-3">
+                <label for="id_provincia" class="form-label">Provincia</label>
+                <input type="text" class="form-control" id="id_provincia" name="provincia" required value="{{ form.provincia.value|default_if_none:'' }}">
+                {% if form.provincia.errors %}
+                    <div class="alert alert-danger">{{ form.provincia.errors.as_text }}</div>
+                {% endif %}
+            </div>
+        
+            <div class="mb-3">
+                <label for="id_email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="id_email" name="email" required value="{{ form.email.value|default_if_none:'' }}">
+                {% if form.email.errors %}
+                    <div class="alert alert-danger">{{ form.email.errors.as_text }}</div>
+                {% endif %}
+            </div>
+        
+            <div class="mb-3">
+                <label for="id_llamada" class="form-label">Llamada</label>
+                <input type="text" class="form-control" id="id_llamada" name="llamada" required value="{{ form.llamada.value|default_if_none:'' }}">
+                {% if form.llamada.errors %}
+                    <div class="alert alert-danger">{{ form.llamada.errors.as_text }}</div>
+                {% endif %}
+            </div>
+        
+            <div class="mb-3">
+                <label for="id_pagina_web" class="form-label">Página Web</label>
+                <input type="url" class="form-control" id="id_pagina_web" name="pagina_web" required value="{{ form.pagina_web.value|default_if_none:'' }}">
+                {% if form.pagina_web.errors %}
+                    <div class="alert alert-danger">{{ form.pagina_web.errors.as_text }}</div>
+                {% endif %}
+            </div>
+        
+            <div class="mb-3">
+                <label for="id_redes" class="form-label">Redes</label>
+                <input type="text" class="form-control" id="id_redes" name="redes" required value="{{ form.redes.value|default_if_none:'' }}">
+                {% if form.redes.errors %}
+                    <div class="alert alert-danger">{{ form.redes.errors.as_text }}</div>
+                {% endif %}
+            </div>
+        
+            <div class="mb-3">
+                <label for="id_imagen_url" class="form-label">Imagen</label>
+                <input type="file" class="form-control" id="id_imagen_url" name="imagen_url" required>
+                {% if form.imagen_url.errors %}
+                    <div class="alert alert-danger">{{ form.imagen_url.errors.as_text }}</div>
+                {% endif %}
+            </div>
+        
+            <div class="mb-3">
+                <label for="id_es_publicidad" class="form-label">Es Publicidad</label>
+                <input type="checkbox" class="form-check-input" id="id_es_publicidad" name="es_publicidad" {% if form.es_publicidad.value %}checked{% endif %}>
+            </div>
+        
+            <div class="mb-3">
+                <label for="id_valoracion" class="form-label">Valoración</label>
+                <input type="number" step="0.01" class="form-control" id="id_valoracion" name="valoracion" required value="{{ form.valoracion.value|default_if_none:'' }}">
+                {% if form.valoracion.errors %}
+                    <div class="alert alert-danger">{{ form.valoracion.errors.as_text }}</div>
+                {% endif %}
+            </div>
+        
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+        
+        
+    </div>
+    <div class="col-md-8">
+        <h4>Lista de Agencias</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Provincia</th>
+                    <th>Email</th>
+                    <th>Llamada</th>
+                    <th>Página Web</th>
+                    <th>Imagen</th>
+                    <th>Valoración</th>
+                    
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for agencia in agencias %}
+                <tr>
+                    <td>{{ agencia.id }}</td>
+                    <td>{{ agencia.nombre }}</td>
+                    <td>{{ agencia.provincia }}</td>
+                    <td>{{ agencia.email }}</td>
+                    <td>{{ agencia.llamada }}</td>
+                    <td>{{ agencia.pagina_web }}</td>
+                    <td><img src="{{ agencia.imagen_url }}" alt="Imagen de {{ agencia.nombre }}" style="width: 100px;"></td>
+                    <td>{{ agencia.valoracion }}</td>
+                    
+                    <td>
+                        <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal"
+                                data-id="{{ agencia.id }}"
+                                data-nombre="{{ agencia.nombre }}"
+                                data-provincia="{{ agencia.provincia }}"
+                                data-email="{{ agencia.email }}"
+                                data-llamada="{{ agencia.llamada }}"
+                                data-pagina_web="{{ agencia.pagina_web }}"
+                                data-redes="{{ agencia.redes }}"
+                                data-imagen_url="{{ agencia.imagen_url }}"
+                                data-valoracion="{{ agencia.valoracion }}"
+                                data-es_publicidad="{{ agencia.es_publicidad }}">Editar</button><br>
+                                <h2></h2>
+                        <a href="{% url 'eliminar_agencia' agencia.id %}" class="btn btn-danger btn-sm">Eliminar</a><br>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="10" class="text-center">No hay agencias disponibles</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal para editar agencia -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Editar Agencia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{% url 'editar_agencia' 0 %}" enctype="multipart/form-data" id="editForm">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <input type="hidden" id="edit-id" name="id">
+
+                    <div class="mb-3">
+                        <label for="edit-nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="edit-nombre" name="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-provincia" class="form-label">Provincia</label>
+                        <input type="text" class="form-control" id="edit-provincia" name="provincia" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="edit-email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-llamada" class="form-label">Llamada</label>
+                        <input type="text" class="form-control" id="edit-llamada" name="llamada" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-pagina_web" class="form-label">Página Web</label>
+                        <input type="url" class="form-control" id="edit-pagina_web" name="pagina_web" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-redes" class="form-label">Redes</label>
+                        <input type="text" class="form-control" id="edit-redes" name="redes" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-imagen_actual" class="form-label">Imagen Actual</label>
+                        <img id="edit-imagen_actual" src="" alt="Imagen Actual" style="width: 100px; display: block; margin-bottom: 10px;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-imagen_url" class="form-label">Subir Nueva Imagen</label>
+                        <input type="file" class="form-control" id="edit-imagen_url" name="imagen_url" accept="image/*">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-valoracion" class="form-label">Valoración</label>
+                        <input type="number" step="0.01" class="form-control" id="edit-valoracion" name="valoracion" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-es_publicidad" class="form-label">Es Publicidad</label>
+                        <input type="checkbox" class="form-check-input" id="edit-es_publicidad" name="es_publicidad">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#editModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var modal = $(this);
+
+            modal.find('form').attr('action', '{% url "editar_agencia" 0 %}'.replace('/0/', '/' + button.data('id') + '/'));
+            modal.find('#edit-id').val(button.data('id'));
+
+            // Dinámicamente establece los valores de los campos
+            modal.find('#edit-nombre').val(button.data('nombre'));
+            modal.find('#edit-provincia').val(button.data('provincia'));
+            modal.find('#edit-email').val(button.data('email'));
+            modal.find('#edit-llamada').val(button.data('llamada'));
+            modal.find('#edit-pagina_web').val(button.data('pagina_web'));
+            modal.find('#edit-redes').val(button.data('redes'));
+            modal.find('#edit-imagen_actual').attr('src', button.data('imagen_url'));
+            modal.find('#edit-valoracion').val(button.data('valoracion'));
+            modal.find('#edit-es_publicidad').prop('checked', button.data('es_publicidad'));
+        });
+    });
+</script>
+
+
+
+{% endblock %}
