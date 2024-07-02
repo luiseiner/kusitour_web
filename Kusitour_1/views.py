@@ -6,15 +6,12 @@ from .forms import AgenciaForm, CelebracionForm, HotelForm, LugarTuristicoForm, 
 import boto3
 import logging
 from django.conf import settings
-import os
+
 
 # Configuración de logging
 logger = logging.getLogger(__name__)
 
 def index(request):
-    template_path = os.path.join(settings.BASE_DIR, 'Kusitour_1', 'templates', 'index.html')
-    print(f"Path to index.html: {template_path}")
-    print("Exists:", os.path.exists(template_path))
     return render(request, 'index.html')
 
 def somos(request):

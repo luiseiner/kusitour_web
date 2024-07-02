@@ -24,6 +24,9 @@ if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -50,7 +53,7 @@ ROOT_URLCONF = 'kusitour.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'Kusitour_1', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'Kusitour_1', 'Templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
