@@ -6,7 +6,7 @@ from .forms import AgenciaForm, CelebracionForm, HotelForm, LugarTuristicoForm, 
 import boto3
 import logging
 from django.conf import settings
-from django.shortcuts import render
+
 
 # Configuración de logging
 logger = logging.getLogger(__name__)
