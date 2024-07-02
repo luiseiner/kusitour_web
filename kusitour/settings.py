@@ -121,6 +121,7 @@ LOGGING = {
 # Static and media URL
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+ALLOWED_HOSTS = ['kusitour-web.onrender.com', 'localhost', '127.0.0.1']
 
 # Media files (uploaded files)
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/'
