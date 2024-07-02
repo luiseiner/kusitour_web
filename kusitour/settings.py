@@ -44,7 +44,7 @@ ROOT_URLCONF = 'kusitour.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'Kusitour_1', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
